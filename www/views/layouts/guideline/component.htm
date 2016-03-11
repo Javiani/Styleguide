@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+	<title>Component Page</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="/assets/dist/css/pages/guideline.css" />
+
+	<%site.css.forEach(function(url){%>
+		<link rel="stylesheet" type="text/css" href="/css/<%=url%>" />
+	<%});%>
+	<%site.js.forEach(function(url){%>
+		<script type="text/javascript" src="/js/<%=url%>" async></script>
+	<%});%>
+
+</head>
+
+	<body>
+		<%- site.content %>
+    </body>
+
+</html>

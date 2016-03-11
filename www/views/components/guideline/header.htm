@@ -1,0 +1,24 @@
+<header class="g-header" data-controller="g-header">
+    <div class="g-content">
+        <%if(site.title){%>
+            <%-site.title%>
+            <p class="g-label">￫ <%=request.query.url%></p>
+            <p class="g-label">￫ <a href="#" class="g-link-source">&lt; source /&gt;</a></p>
+            <div class="litemodal" data-component="litemodal">
+
+                <div class="m-body">
+                    <a href="#/modal-close" rel="modal-close" class="close">×</a>
+                    <div class="g-source">
+                        <textarea readonly></textarea>
+                    </div>
+                </div>
+            </div>
+        <%}else{%>
+            <h1 class="g-h1">Living StyleGuide</h1>
+            <p>
+                The Living Style Guide is a resource for designers, developers and product managers.<br / />
+                Use it to maintain modular front-end code and visual concistency.
+            </p>
+        <%}%>
+    </div>
+</header>

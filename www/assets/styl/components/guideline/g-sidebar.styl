@@ -1,0 +1,64 @@
+.g-sidebar
+
+    font:400 14px 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    border-right:1px solid transparent
+
+    &.open
+        transform:translateX(0%)
+
+    li.active > a
+        border-color:#3c8dbc
+    li > a .fa
+        width:20px
+
+    .g-sidebar-button
+        color: #fff
+        position: absolute
+        right: -40px
+        top: 0
+        font-size: 25px
+        background-color:#282828
+        padding:10px
+
+    .g-sidebar-menu, .g-sidebar-submenu
+        list-style: none
+        padding:0
+        margin:0
+
+    .g-sidebar-menu
+        padding:20px 0
+
+        & > .g-sidebar-header
+            color: #4b646f
+            background-color: #1a2226
+            padding: 10px 25px 10px 15px
+            font-size: 12px
+
+        & > li .g-sidebar-submenu
+            max-height:0
+            overflow:hidden
+            transition:max-height .8s ease-in-out
+
+        & > .active .g-sidebar-submenu
+            max-height:500px
+
+        li a
+            text-decoration:none
+            border-left: 3px solid transparent
+            display:block
+
+        li a:hover
+            color:#fff
+
+        & > li > a
+            color:#b8c7ce
+            padding:12px 5px 12px 15px
+
+    .g-sidebar-submenu
+        background-color:#2c3b41
+        & > li > a
+            text-transform:capitalize
+            color:#8aa4af
+            padding:5px 5px 5px 15px

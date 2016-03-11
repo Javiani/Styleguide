@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="g-html ">
+<head>
+	<title>Documentation Page</title>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+	<link rel="stylesheet" href="/assets/dist/css/pages/guideline.css" />
+
+	<script type="text/javascript" src="/assets/dist/js/guideline.min.js" async></script>
+</head>
+
+	<body data-app="guideline" class="g-body">
+
+		<%- include( url('components/guideline/header') ) %>
+
+		<main class="g-container">
+
+			<section class="g-sidebar" data-controller="g-sidebar">
+				<%- include( url('components/guideline/sidebar') ) %>
+			</section>
+
+			<%- site.content %>
+
+		</main>
+
+    </body>
+
+</html>

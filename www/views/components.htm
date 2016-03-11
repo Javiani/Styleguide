@@ -1,0 +1,21 @@
+<%
+	var service, component, doc;
+
+	service = model('guideline/get-component');
+	component = service( request.query.url );
+
+	site.layout	= 'guideline/documentation.htm';
+	site.title = component.doc;
+%>
+
+<section data-controller="g-resize">
+
+	<%- include( url('components/guideline/ruler') ) %>
+
+	<section class="g-device -phone">
+		<div class="g-device-inner">
+			<iframe src="components/guideline/component?url=<%=request.query.url%>"></iframe>
+		</div>
+	</section>
+
+</section>
