@@ -1,13 +1,22 @@
 import jails from 'jails'
+import scriptjs from 'scriptjs'
 import logger from 'mods/logger/logger'
-import script from 'scriptjs/dist/script'
 import adapter from 'mods/jquery.adapter/jquery.adapter'
 
-script([
-    '//code.jquery.com/jquery-1.11.0.min.js'
-], function(){
+let jquery = 'node_modules/jquery/dist/jquery.min.js'
+let jquerycdn = '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'
+let app = document.getElementById('main-script').getAttribute('data-application')
+let dependencies = [app]
 
-    jails.events = adapter( jQuery )
-    logger()
-    jails.start()
+scriptjs( jquerycdn, ()=>{
+
+	if( !window.jQuery ){
+		dependencies.unshift( jquery )
+	}
+
+	scriptjs(dependencies, ()=>{
+		jails.events = adapter( jQuery )
+		logger()
+		jails.start()
+	})
 })

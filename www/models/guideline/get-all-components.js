@@ -27,7 +27,7 @@ module.exports = function(){
         var markd;
         if(comment && comment.length){
             comment = comment[0].replace(/\/\*/, '').replace(/\*\//, '');
-            comment = comment.replace(/(^\s{4}|\t{1})*/gm, '');
+            comment = comment.replace(/(^\s{4})*/gm, '');
             markd = converter.makeHtml(comment.trim());
             return { doc :markd  };
         }

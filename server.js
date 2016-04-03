@@ -1,5 +1,4 @@
-var	fs = require('fs'),
-	jerrymice = require('jerrymice'),
+var jerrymice = require('jerrymice'),
 	markdown = require('./routes/markdown'),
 	css = require('./routes/css'),
 	js = require('./routes/js');

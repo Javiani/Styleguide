@@ -1,17 +1,17 @@
 <%
-
 /*
-	# Stick Menu
-	Este componente é um menu flutuante para navegação dentro do site.
+    # Stick Menu
+    Este componente é um menu flutuante para navegação dentro do site.
 */
-
-	site.js  = ['controllers/stick-menu.js'];
-	site.css = ['components/menu/stick-menu.styl'];
+    site.component = {
+		js  :'controllers/stick-menu.js',
+		css :['components/menu/stick-menu.styl']
+	};
 %>
 <nav class="stick-menu" data-controller="stick-menu">
-	<ul>
-		<li><a href="#/1" data-component="button">1</a></li>
-		<li><a href="#/2" data-component="button">2</a></li>
-		<li><a href="#/3" data-component="button">3</a></li>
-	</ul>
+    <ul>
+        <li><a href="#/1" data-component="button">1</a></li>
+        <li><a href="#/2" data-component="button">2</a></li>
+        <li><a href="#/3" data-component="button">3</a></li>
+    </ul>
 </nav>

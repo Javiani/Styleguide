@@ -4,6 +4,8 @@
 module.exports = function( app, render ){
 
     var fs = require('fs');
+	var optimize = require('webpack').optimize;
+	var config = require('../webpack.config');
 
     return function(req, res, next){
 
@@ -13,21 +15,18 @@ module.exports = function( app, render ){
             string  = '',
             compiler;
 
-        res.setHeader('Content-Type', 'text/js');
+        res.setHeader('Content-Type', 'text/javascript');
 
         compiler = webpack({
-            entry : [assets + url , assets + 'main.dev'],
-            output: { filename: './www/assets/dist/js/temp.js' },
-            module: {
-                loaders: [{ loader: 'babel', test: /\.js$/, query:{ presets:['es2015']} }]
-            },
-            resolve:{
-                alias :{
-                    jails :'jails-js/source/jails.js',
-                    mods  :'jails-modules',
-                    comps :'jails-components'
-                }
-            }
+            entry :{
+				temp:[ 'jails', 'scriptjs', './www/assets/es6/main.dev', assets + url ],
+			},
+            output: {
+				path: './www/assets/dist/js',
+		        filename: 'temp.js'
+			},
+            module: config.module,
+            resolve:config.resolve
         });
 
         compiler.run(function(error, stats){

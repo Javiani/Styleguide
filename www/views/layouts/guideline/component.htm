@@ -7,12 +7,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="/assets/dist/css/pages/guideline.css" />
 
-	<%site.css.forEach(function(url){%>
+	<%site.component.css.forEach(function(url){%>
 		<link rel="stylesheet" type="text/css" href="/css/<%=url%>" />
 	<%});%>
-	<%site.js.forEach(function(url){%>
-		<script type="text/javascript" src="/js/<%=url%>" async></script>
-	<%});%>
+	<script type="text/javascript" id="main-script" src="/js/<%=site.component.js%>"></script>
 
 </head>
 

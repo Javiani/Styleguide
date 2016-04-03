@@ -1,20 +1,28 @@
-var path, glob, webpack, uglify, dev;
+var path, glob, webpack, uglify, dev, optimize;
 
-path    = require('path');
-glob    = require('glob');
-webpack = require('webpack');
-uglify  = webpack.optimize.UglifyJsPlugin;
-dev     = process.argv.filter(function(item){
-    return item == '--dev';
-});
+path	 = require('path');
+glob	 = require('glob');
+webpack  = require('webpack');
+optimize = webpack.optimize;
+uglify   = optimize.UglifyJsPlugin;
+
+dev	 = !!process.argv.filter(function(item){
+	return item == '--dev';
+}).length;
 
 module.exports = {
 
-	devtool:'source-map',
+	devtool : 'source-map',
 
-    output: {
-        filename: './www/assets/dist/js/[name].min.js'
-    },
+	entry : glob.sync('./www/assets/es6/apps/**/*.js')
+		.reduce( entries, {
+			main:[ 'jails', 'scriptjs', './www/assets/es6/main'+ (dev?'.dev':'') ]
+		}),
+
+	output: {
+		path: __dirname + '/www/assets/dist/js',
+        filename: '[name].min.js'
+	},
 
 	resolve:{
 		alias :{
@@ -24,27 +32,33 @@ module.exports = {
 		}
 	},
 
-	plugins :dev? null :[
-		new uglify({ compress :{ warnings:false }, minimize :true })
-	],
+	plugins :[
+		new optimize.CommonsChunkPlugin('main', 'main.min.js')
+	].concat(
+		dev? [] :new optimize.UglifyJsPlugin({
+			compress :{ warnings:false },
+			minimize :true}
+		)
+	),
 
-    module: {
-        loaders: [{
+	module: {
+		loaders: [{
 			loader: 'babel',
 			test: /\.js$/,
 			exclude: /node_modules/,
 			query:{ presets:['es2015']}
 		}]
-    },
-
-    entry: glob.sync('./www/assets/es6/apps/**/*.js')
-        .reduce(function(acc, file){
-            var filename  = path.basename(file, '.js'),
-                directory = path.dirname(file),
-                dir = directory.split(/\//).pop();
-
-            filename = dir == 'apps' ? filename : dir+'/'+filename ;
-            acc[filename] = ['./'+file, './www/assets/es6/main' + (dev.length?'.dev':'')];
-            return acc;
-        }, {})
+	}
 };
+
+function entries(acc, file){
+
+	var filename  = path.basename(file, '.js'),
+		directory = path.dirname(file),
+		dir = directory.split(/\//).pop();
+
+	filename = dir == 'apps' ? filename : dir+'/'+filename ;
+	acc[filename] = './' + file;
+
+	return acc;
+}
