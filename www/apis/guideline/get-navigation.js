@@ -7,17 +7,17 @@ module.exports = function(){
         {
             section :'Docs',
             icon    :'fa-file-text-o',
-            items   :model('guideline/get-all-docs')
+            items   :api('guideline/get-all-docs')
         },
         {
             section :'Components',
             icon    :'fa-th-large',
-            items   :model('guideline/get-all-components')
+            items   :api('guideline/get-all-components')
         },
         {
             section :'Pages',
             icon    :'fa-files-o',
-            items   :model('guideline/get-all-pages')
+            items   :api('guideline/get-all-pages')
         }
     ];
 };

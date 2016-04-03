@@ -1,7 +1,6 @@
 import jails from 'jails'
 import scriptjs from 'scriptjs'
 import logger from 'mods/logger/logger'
-import adapter from 'mods/jquery.adapter/jquery.adapter'
 
 let jquery = 'node_modules/jquery/dist/jquery.min.js'
 let jquerycdn = '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'
@@ -15,7 +14,6 @@ scriptjs( jquerycdn, ()=>{
 	}
 
 	scriptjs(dependencies, ()=>{
-		jails.events = adapter( jQuery )
 		logger()
 		jails.start()
 	})

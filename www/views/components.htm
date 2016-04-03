@@ -1,7 +1,7 @@
 <%
 	var service, component, doc;
 
-	service = model('guideline/get-component');
+	service = api('guideline/get-component');
 	component = service( request.query.url );
 
 	site.layout	= 'guideline/documentation.htm';

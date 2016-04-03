@@ -2,7 +2,7 @@
     site.layout	= 'guideline/component.htm';
 
     var service, component;
-	service = model('guideline/get-component');
+	service = api('guideline/get-component');
     component = service( request.query.url );
 %>
 

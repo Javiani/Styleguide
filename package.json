@@ -16,7 +16,7 @@
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.5.0",
     "glob": "^7.0.0",
-    "jerrymice": "^2.0.0",
+    "jerrymice": "^2.1.1",
     "showdown": "^1.3.0",
     "webpack": "^1.12.13"
   },
