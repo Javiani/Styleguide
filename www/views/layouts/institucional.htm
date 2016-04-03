@@ -5,12 +5,12 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
-	<link rel="stylesheet" href="/assets/dist/css/pages/home.css" />
+	<link rel="stylesheet" href="/assets/dist/css/pages/<%=site.section%>.css" />
 
-	<script type="text/javascript" src="/assets/dist/js/main.min.js" async></script>
+	<script type="text/javascript" id="main-script" src="/assets/dist/js/main.min.js" data-application="/assets/dist/js/<%=site.section%>.min.js" async></script>
 </head>
 
-	<body>
+	<body data-app="<%=site.section%>">
 
 		<main class="institucional">
 			<header class="header">Header</header>
