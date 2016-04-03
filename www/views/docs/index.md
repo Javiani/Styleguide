@@ -3,7 +3,7 @@
 - [Ambiente da styleguide](#ambientedastyleguide)
 - [Variáveis de Ambiente](#variveisdeambiente)
 - [Estrutura de pastas](#estruturadepastas)
-- [Models & Mock Services](#modelsmockservices)
+- [Api's & Mock Services](#apismockservices)
 - [Criação de Componentes](#criaodecomponentes)
 - [Arquitetura Css](#arquiteturacss)
 - [Arquitetura Javascript](#arquiteturajavascript)
@@ -42,9 +42,9 @@ A variável `site` inicia como um objeto vazio. Possui duas propriedades utiliza
 
 Uma variável que pode ser usada como variável de sessão, é sempre zerada ao visitar a página, pode ser usado para qualquer fim.
 
-### model( String path )
+### api( String path )
 
-Model é uma função que irá procurar na pasta `www/models` por alguma função ou objeto que poderá servir como `api` tanto
+`api` é uma função que irá procurar na pasta `www/apis` por alguma função ou objeto que poderá servir como `api` tanto
 no desenvolvimento dos componentes da página, como também pode ser acessado via serviço **Ajax** ou **Jsonp**.
 
 ### request, response
@@ -60,7 +60,7 @@ Resgata o erro da aplicação caso ocorra. É possível visualizar essa variáve
 A estrutura de pastas segue a seguinte lógica:
 
 - `assets` : Reside todos os assets do projeto, imagens, css, javascripts, fontes etc.
-- `models` : Guarda todos os arquivos `.js` node que são rodados no server-side.
+- `apis` : Guarda todos os arquivos `.js` node que são rodados no server-side.
 - `views`  : Possui arquivos `.htm` e `.md` que serão usados para criação dos componentes html e de documentação.
 - `views/components` : Pasta que armazena todas as views parciais de componentes, a estrutura de pastas dentro desta pasta componentes pode ser organizada da forma que for mais conveniente de acordo com o projeto.
 - `views/docs`    : Possui todos os markdowns de documentação da Style Guide.
@@ -69,18 +69,18 @@ A estrutura de pastas segue a seguinte lógica:
 
 ---
 
-## Models & Mock Services
+## Apis & Mock Services
 
-As models são apenas arquivos `.js` que rodam no ambiente `node`. Servem para criar lógica no lado do servidor, criar
+As apis são apenas arquivos `.js` que rodam no ambiente `node`. Servem para criar lógica no lado do servidor, criar
 mock dinâmicos para ser usados no conteúdo das páginas e também para gerar serviços.
 
-O `jerrymice` automatiza a criação de serviços utilizando a localização das `models`. Após criar uma model chamada `test.js` por exemplo, na pasta `models`, basta acessar o seu serviço equivalente em : `/services/test`.
+O `jerrymice` automatiza a criação de serviços utilizando a localização das `apis`. Após criar uma api chamada `test.js` por exemplo, na pasta `apis`, basta acessar o seu serviço equivalente em : `/services/test`.
 
-Ele obedece a estrutura de pastas dentro da pasta `models` portanto para acessar o mesmo serviço usando uma model que reside em `models/pasta/teste.js`, basta acessar a url :`/services/pasta/teste`.
+Ele obedece a estrutura de pastas dentro da pasta `apis` portanto para acessar o mesmo serviço usando uma api que reside em `apis/pasta/teste.js`, basta acessar a url :`/services/pasta/teste`.
 
 É possível também requisitar por serviços `jsonp`, apenas adicionando a querystring `?callback=nome-da-funcao`.
 
-Se precisar responder um css, basta responder o header adequado na sua `model`: `response.setHeader('Content-Type', 'text/css');`
+Se precisar responder um css, basta responder o header adequado na sua `api`: `response.setHeader('Content-Type', 'text/css');`
 
 ---
 
