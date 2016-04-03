@@ -3,15 +3,20 @@ import 'comps/litemodal/litemodal'
 
 jails.controller('g-header', function( html, data ){
 
-	let textarea, body, modal
+	let textarea, body, modal, iframe
 
 	this.init = ()=>{
 
-		body = $('iframe').contents().find('body')
+		iframe = $('iframe')
 		textarea = $(html).find('textarea')
 		modal = this.x('.litemodal')
 
+		iframe.on('load', set)
 		this.on('click', '.g-link-source', open_source)
+	}
+
+	let set = ()=>{
+		body = iframe.contents().find('body')
 	}
 
 	let open_source =()=>{
@@ -20,7 +25,6 @@ jails.controller('g-header', function( html, data ){
 		textarea.text( body.html().trim() )
 
 		modal('open')
-
 		textarea.css('height', code.scrollHeight)
 	}
 
