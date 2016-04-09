@@ -1,4 +1,4 @@
-var path, glob, webpack, uglify, dev, optimize;
+var path, glob, webpack, uglify, dev, optimize, config;
 
 path	 = require('path');
 glob	 = require('glob');
@@ -10,17 +10,21 @@ dev	 = !!process.argv.filter(function(item){
 	return item == '--dev';
 }).length;
 
+config = {
+	js	:'./www/assets/es6',
+	dist:__dirname + '/www/assets/dist/js'
+}
+
 module.exports = {
 
 	devtool : 'source-map',
 
-	entry : glob.sync('./www/assets/es6/apps/**/*.js')
-		.reduce( entries, {
-			main:[ 'jails', 'scriptjs', './www/assets/es6/main'+ (dev?'.dev':'') ]
-		}),
+	entry : glob.sync( config.js + '/apps/**/*.js').reduce( entries, {
+		main:[ config.js + '/main'+ (dev?'.dev':'') ]
+	}),
 
 	output: {
-		path: __dirname + '/www/assets/dist/js',
+		path: config.dist,
         filename: '[name].min.js'
 	},
 
