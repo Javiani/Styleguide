@@ -1,7 +1,7 @@
 /*
     @Routes
 */
-module.exports = function( app, render ){
+module.exports = function( app ){
 
     var fs = require('fs');
 
@@ -14,7 +14,6 @@ module.exports = function( app, render ){
 			url   = './www/views',
 			text  = fs.readFileSync(url + file + '.md', 'utf8');
 
-        global.site.markdown = converter.makeHtml( text );
-		render('views/markdown.htm', req, res, next );
+		res.render('markdown.htm', { markdown :converter.makeHtml( text ) });
 	}
 };

@@ -23,14 +23,15 @@ module.exports = function(){
 
     function get_data( string ){
 
-        var comment = string.substring(0, 1000).match(/\/\*([^|])*\*\//g);
+        var comment = string.substring(0, 1000).match(/\{\#([^|])*\#\}/g);
         var markd;
         if(comment && comment.length){
-            comment = comment[0].replace(/\/\*/, '').replace(/\*\//, '');
+            comment = comment[0].replace(/\{\#/, '').replace(/\#\}/, '');
             comment = comment.replace(/(^\s{4})*/gm, '');
             markd = converter.makeHtml(comment.trim());
             return { doc :markd  };
         }
+
         return {};
     }
 

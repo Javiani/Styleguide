@@ -1,7 +1,7 @@
 /*
     @Routes
 */
-module.exports = function( app, render ){
+module.exports = function( app ){
 
     var fs = require('fs');
 	var optimize = require('webpack').optimize;

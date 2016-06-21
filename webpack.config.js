@@ -29,6 +29,7 @@ module.exports = {
 	},
 
 	resolve:{
+		root  :config.js,
 		alias :{
 			jails :'jails-js/source/jails.js',
 			mods  :'jails-modules',

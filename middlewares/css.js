@@ -1,15 +1,16 @@
 /*
     @Routes
 */
-module.exports = function( app, render ){
 
-    var fs = require('fs');
+var stylus = require('stylus'),
+	jeet = require('jeet'),
+	fs = require('fs');
+
+module.exports = function( app ){
 
     return function(req, res, next){
 
-		var stylus = require('stylus'),
-		    jeet = require('jeet'),
-            url, assets, string, stream, path;
+        var url, assets, string, stream, path;
 
 	    res.setHeader('Content-Type', 'text/css');
 

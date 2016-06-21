@@ -1,21 +1,29 @@
-<%
-	var service, component, doc;
+{% extends 'layouts/guideline/documentation.htm' %}
 
-	service = api('guideline/get-component');
-	component = service( request.query.url );
+{% set service 	 = api('guideline/get-component') %}
+{% set component = service( request.query.url ) %}
 
-	site.layout	= 'guideline/documentation.htm';
-	site.title = component.doc;
-%>
-
-<section data-controller="g-resize">
-
-	<%- include( url('components/guideline/ruler') ) %>
-
-	<section class="g-device -phone">
-		<div class="g-device-inner">
-			<iframe src="components/guideline/component?url=<%=request.query.url%>"></iframe>
+{% block header %}
+	{{ component.doc | safe }}
+	<p class="g-label">￫ {{ request.query.url }}</p>
+	<p class="g-label">￫ <a href="#" class="g-link-source">&lt; source /&gt;</a></p>
+	<div class="litemodal" data-component="litemodal">
+		<div class="m-body">
+			<a href="#/modal-close" rel="modal-close" class="close">×</a>
+			<div class="g-source">
+				<textarea readonly></textarea>
+			</div>
 		</div>
-	</section>
+	</div>
+{% endblock %}
 
-</section>
+{% block content %}
+	<section data-controller="g-resize">
+		{% include 'components/guideline/ruler.htm' %}
+		<section class="g-device -phone">
+			<div class="g-device-inner">
+				<iframe src="components/guideline/component?url={{ request.query.url }}&r={{ [1,2,3,4,5,6] | random }}"></iframe>
+			</div>
+		</section>
+	</section>
+{% endblock %}

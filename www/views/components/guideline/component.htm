@@ -1,9 +1,6 @@
-<%
-    site.layout	= 'guideline/component.htm';
+{% set service 	 = api('guideline/get-component') %}
+{% set component = service( request.query.url ) %}
 
-    var service, component;
-	service = api('guideline/get-component');
-    component = service( request.query.url );
-%>
-
-<%- include( url( component.url ) ) %>
+{% block content %}
+	{% include component.url + '.htm' %}
+{% endblock %}

@@ -1,7 +1,7 @@
-<%
-	site.layout	= 'guideline/documentation.htm';
-%>
+{% extends 'layouts/guideline/documentation.htm' %}
 
-<section class="g-content g-markdown">
-	<%- site.markdown %>
-</section>
+{% block content %}
+	<section class="g-content g-markdown">
+		{{ markdown | safe }}
+	</section>
+{% endblock %}

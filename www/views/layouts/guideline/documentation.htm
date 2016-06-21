@@ -10,20 +10,26 @@
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
 	<link rel="stylesheet" href="/assets/dist/css/pages/guideline.css" />
 
-	<script type="text/javascript" id="main-script" src="/assets/dist/js/main.min.js" data-application="/assets/dist/js/guideline.min.js" async></script>
+	<script type="text/javascript" id="main-script" src="/assets/dist/js/main.min.js" data-application="/assets/dist/js/guideline.min.js"></script>
 </head>
 
 	<body data-app="guideline" class="g-body">
 
-		<%- include( url('components/guideline/header') ) %>
+		<header class="g-header" data-controller="g-header">
+		    <div class="g-content">
+				{% block header %}
+					{% include 'components/guideline/header.htm' %}
+				{% endblock %}
+		    </div>
+		</header>
 
 		<main class="g-container">
 
 			<section class="g-sidebar" data-controller="g-sidebar">
-				<%- include( url('components/guideline/sidebar') ) %>
+				{% include 'components/guideline/sidebar.htm' %}
 			</section>
 
-			<%- site.content %>
+			{% block content %}Default content{% endblock %}
 
 		</main>
 

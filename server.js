@@ -1,26 +1,54 @@
-var jerrymice = require('jerrymice'),
-	markdown = require('./routes/markdown'),
-	css = require('./routes/css'),
-	js = require('./routes/js');
+/*
+	@Server
+	Express + Nunjucks
+*/
 
-jerrymice.run({
+var	nunjucks  = require('nunjucks'),
+	express   = require('express'),
+	app       = express(),
+	port	  = 3000,
+	env;
 
-	baseUrl		:__dirname,
-	port		:3000,
-	services 	:/services/
-
-}, function( app, render ){
-
-	global.url = function(url){
-		return __dirname + '/www/views/' + url + '.htm';
-	};
-
-	app.get('*.md', markdown(app, render));
-	app.get('/css/*', css(app, render));
-	app.get('/js/*', js(app, render));
-
-	app.get('/', function( req, res ){
-		res.redirect('/docs/index.md');
-	});
-
+env = nunjucks.configure('www/views', {
+	express   : app,
+	autoescape: true,
+	watch	  : true
 });
+
+/* @Middlewares */
+
+app.use(express.static('www'));
+
+//Globals
+var globals = require('./middlewares/globals');
+app.use( globals(app, { folder:'apis', env :env }) );
+
+//Api's
+var api = require('./middlewares/api');
+app.get( /service/, api(app, { folder: 'api'}) );
+
+var markdown = require('./middlewares/markdown');
+app.get('*.md', markdown(app));
+
+//Default Route
+var routes = require('./middlewares/routes');
+app.get( /^[^.]+$|\.(?!(\w*)$)([^.]+$)/, routes(app) );
+
+var css = require('./middlewares/css');
+app.get('/css/*', css(app));
+
+var js = require('./middlewares/js');
+app.get('/js/*', js(app));
+
+app.listen( port );
+
+welcome();
+
+function welcome(){
+	console.log('\x1b[32m%s\x1b[0m------------------------------------------\x1b[32m%s\x1b[0m', '+', '+');
+	console.log(' \x1b[32m%s\x1b[0m Jerry Mice \x1b[32m%s\x1b[0m', '☁', '☁' );
+	console.log(' \x1b[36m%s\x1b[0m :Express.js + Nunjucks', '@Powered by');
+	console.log(' \x1b[36m%s\x1b[0m :\x1b[32m%s\x1b[0m', '@Served at', 'http://localhost:'+port+'/');
+	console.log(' \x1b[36m%s\x1b[0m : Hit ctrl+c to shutdown server', '@Quit');
+	console.log('\x1b[32m%s\x1b[0m------------------------------------------\x1b[32m%s\x1b[0m', '+', '+');
+}

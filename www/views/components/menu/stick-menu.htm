@@ -1,17 +1,24 @@
-<%
-/*
-    # Stick Menu
-    Este componente é um menu flutuante para navegação dentro do site.
-*/
-    site.component = {
-		js  :'controllers/stick-menu.js',
-		css :['components/menu/stick-menu.styl']
-	};
-%>
-<nav class="stick-menu" data-controller="stick-menu">
-    <ul>
-        <li><a href="#/1" data-component="button">1</a></li>
-        <li><a href="#/2" data-component="button">2</a></li>
-        <li><a href="#/3" data-component="button">3</a></li>
-    </ul>
-</nav>
+{% extends 'layouts/guideline/iframe.htm' %}
+
+{#
+# Stick Menu
+Este componente é um menu flutuante para navegação dentro do site.
+#}
+
+{% block css %}
+	<link rel="stylesheet" type="text/css" href="/css/components/menu/stick-menu.styl" />
+{% endblock %}
+
+{% block js %}
+	<script type="text/javascript" id="main-script" src="/js/controllers/stick-menu.js"></script>
+{% endblock %}
+
+{% block content %}
+	<nav class="stick-menu" data-controller="stick-menu">
+	    <ul>
+	        <li><a href="#/1" data-component="button">1</a></li>
+	        <li><a href="#/2" data-component="button">2</a></li>
+	        <li><a href="#/3" data-component="button">3</a></li>
+	    </ul>
+	</nav>
+{% endblock %}

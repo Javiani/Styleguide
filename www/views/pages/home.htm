@@ -1,17 +1,18 @@
-<%
-	site.layout  = 'institucional.htm';
-	site.title   = 'Home';
-	site.section = 'home'
-%>
+{% extends 'layouts/institucional.htm' %}
 
-<section class="main">
+{% set title = "Home" %}
+{% set app 	 = "home" %}
 
-	<aside class="sidebar">
-		Sidebar
-	</aside>
+{% block content %}
+	<section class="main">
 
-	<section class="content">
-		<h1>Home</h1>
+		<aside class="sidebar">
+			Sidebar
+		</aside>
+
+		<section class="content">
+			<h1>Home</h1>
+		</section>
+
 	</section>
-
-</section>
+{% endblock %}
