@@ -10,7 +10,7 @@ module.exports = function( app ){
     return function(req, res, next){
 
         var webpack = require('webpack'),
-            assets  = './www/assets/es6/',
+            assets  = './www/assets/js/',
             url     = req.params[0],
             string  = '',
             compiler;
@@ -19,7 +19,7 @@ module.exports = function( app ){
 
         compiler = webpack({
             entry :{
-				temp:[ 'jails', 'scriptjs', './www/assets/es6/main.dev', assets + url ],
+				temp:[ 'jails', 'scriptjs', './www/assets/js/main.dev', assets + url ],
 			},
             output: {
 				path: './www/assets/dist/js',

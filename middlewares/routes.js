@@ -11,7 +11,7 @@ module.exports = function( app, config ){
 		url = path.normalize( req.path );
 		url = url == '/' ? url + 'index' : url;
 		filepath = url.substring(1).replace(/\/$/g, '');
-		ext = ( config.ext || '.htm' );
+		ext = ( config.ext || '.njk' );
 
 		res.render( filepath + ext, function( err, content ){
 

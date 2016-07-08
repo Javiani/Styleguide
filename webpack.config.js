@@ -11,7 +11,7 @@ dev	 = !!process.argv.filter(function(item){
 }).length;
 
 config = {
-	js	:'./www/assets/es6',
+	js	:'./www/assets/js',
 	dist:__dirname + '/www/assets/dist/js'
 }
 

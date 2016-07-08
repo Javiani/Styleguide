@@ -14,6 +14,6 @@ module.exports = function( app ){
 			url   = './www/views',
 			text  = fs.readFileSync(url + file + '.md', 'utf8');
 
-		res.render('markdown.htm', { markdown :converter.makeHtml( text ) });
+		res.render('markdown.njk', { markdown :converter.makeHtml( text ) });
 	}
 };

@@ -6,7 +6,7 @@ var glob = require('glob'),
 
 module.exports = function(){
 
-    var files = glob.sync('./www/views/components/**/*.htm'),
+    var files = glob.sync('./www/views/components/**/*.njk'),
     menu = [];
 
     files = files.forEach(function( file ){

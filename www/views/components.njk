@@ -1,4 +1,4 @@
-{% extends 'layouts/guideline/documentation.htm' %}
+{% extends 'layouts/guideline/documentation.njk' %}
 
 {% set service 	 = api('guideline/get-component') %}
 {% set component = service( request.query.url ) %}
@@ -19,7 +19,7 @@
 
 {% block content %}
 	<section data-controller="g-resize">
-		{% include 'components/guideline/ruler.htm' %}
+		{% include 'components/guideline/ruler.njk' %}
 		<section class="g-device -phone">
 			<div class="g-device-inner">
 				<iframe src="components/guideline/component?url={{ request.query.url }}&r={{ [1,2,3,4,5,6] | random }}"></iframe>
