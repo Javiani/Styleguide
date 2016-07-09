@@ -26,7 +26,7 @@
     "jails-js": "^1.4.2",
     "jails-modules": "git://github.com/jails-org/Modules.git",
     "jeet": "^6.1.2",
-    "jquery": "^2.2.2",
+    "jquery": "^3.0.0",
     "scriptjs": "^2.5.8",
     "stylus": "^0.53.0"
   }
