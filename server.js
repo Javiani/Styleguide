@@ -2,7 +2,6 @@
 	@Server
 	Express + Nunjucks
 */
-
 var	nunjucks  = require('nunjucks'),
 	express   = require('express'),
 	app       = express(),
@@ -17,7 +16,8 @@ env = nunjucks.configure('www/views', {
 
 /* @Middlewares */
 
-app.use(express.static('www'));
+app.use( express.static('www') );
+app.set( 'view engine', 'njk' );
 
 //Globals
 var globals = require('./middlewares/globals');
@@ -29,16 +29,16 @@ app.get( /service/, api(app, { folder: 'api'}) );
 
 var markdown = require('./middlewares/markdown');
 app.get('*.md', markdown(app));
-
-//Default Route
-var routes = require('./middlewares/routes');
-app.get( /^[^.]+$|\.(?!(\w*)$)([^.]+$)/, routes(app) );
+app.get('/docs/', markdown(app, '/docs/index.md'));
 
 var css = require('./middlewares/css');
 app.get('/css/*', css(app));
 
 var js = require('./middlewares/js');
 app.get('/js/*', js(app));
+
+var routes = require('./middlewares/routes');
+app.get('*', routes(app));
 
 app.listen( port );
 

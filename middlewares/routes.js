@@ -6,26 +6,25 @@ module.exports = function( app, config ){
 
 	return function( req, res, next ){
 
-		var url, filepath, ext;
+		var url = path.resolve( req.path );
+		render( url );
 
-		url = path.normalize( req.path );
-		url = url == '/' ? url + 'index' : url;
-		filepath = url.substring(1).replace(/\/$/g, '');
-		ext = ( config.ext || '.njk' );
+		function render( url ){
 
-		res.render( filepath + ext, function( err, content ){
-
-			if( err ){
-				next(err);
-			}
-			//Handles index default look-up
-			else if( !content && filepath != 'index' ){
-				res.render( path.join( filepath, ('index' + ext) ));
-			}
-			//Handles successfull index look-up
-			else if( content ){
-				res.send( content );
-			}
-		});
+			res.render( url.replace(/^\//, ''), function( err, content ){
+				var name = path.basename( url );
+				if( err ){
+					if( name != 'index' ){
+						render( path.resolve( url, 'index') );
+					}else if( err.message.match(/template not found/) ){
+						res.render('404');
+					}else{
+						next( err );
+					}
+				}else{
+					res.send( content );
+				}
+			});
+		}
 	};
 };

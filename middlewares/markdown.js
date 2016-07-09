@@ -1,11 +1,16 @@
 /*
     @Routes
 */
-module.exports = function( app ){
+module.exports = function( app, redirect ){
 
     var fs = require('fs');
 
     return function( req, res, next ){
+
+		if( redirect ){
+			res.redirect( redirect );
+			return;
+		}
 
 		var showdown  = require('showdown'),
 			converter = new showdown.Converter();
