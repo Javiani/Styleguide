@@ -1,5 +1,6 @@
-import '../controllers/guideline/g-sidebar'
-import '../controllers/guideline/g-resize'
+import '../components/guideline/g-sidebar'
+import '../components/guideline/g-resize'
+
 import '../controllers/guideline/g-header'
 
 import jails from 'jails'

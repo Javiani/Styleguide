@@ -1,13 +1,19 @@
 {
   "name": "living-styleguide",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Living Style Guide Environment",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "mkdir -p www/assets/dist/css/pages ; npm run watch:css & npm run watch:js",
     "watch:css": "stylus www/assets/styl/pages -o www/assets/dist/css/pages -w -u jeet",
-    "watch:js": "webpack --watch --dev"
+    "watch:js": "webpack --watch --dev",
+	"build":"stylus www/assets/styl/pages -o www/assets/dist/css/pages -u jeet -c && webpack",
+	"server":"node server"
+  },
+  "generate":{
+	"src":"pages",
+	"out":"_site"
   },
   "author": "Javiani",
   "license": "ISC",

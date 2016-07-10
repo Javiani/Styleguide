@@ -10,8 +10,11 @@ jails.controller('g-header', function( html, data ){
 		iframe = $('iframe')
 		textarea = $(html).find('textarea')
 		modal = this.x('.litemodal')
+
 		iframe.on('load', set)
 		this.on('click', '.g-link-source', open_source)
+
+		set()
 	}
 
 	let set = ()=>{

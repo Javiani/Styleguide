@@ -18,14 +18,18 @@
 		<header class="g-header" data-controller="g-header">
 		    <div class="g-content">
 				{% block header %}
-					{% include 'components/guideline/header.njk' %}
+					<h1 class="g-h2">Living StyleGuide</h1>
+					<p>
+						The Living Style Guide is a resource for designers, developers and product managers.<br />
+						Use it to maintain modular front-end code and visual concistency.
+					</p>
 				{% endblock %}
 		    </div>
 		</header>
 
 		<main class="g-container">
 
-			<section class="g-sidebar" data-controller="g-sidebar">
+			<section class="g-sidebar" data-component="g-sidebar">
 				{% include 'components/guideline/sidebar.njk' %}
 			</section>
 

@@ -1,6 +1,9 @@
 <nav>
 	<a href="#" class="g-sidebar-button"><i class="fa fa-bars"></i></a>
 	<ul class="g-sidebar-menu">
+		<li>
+			<a href="/docs/"><i class="fa fa-home" aria-hidden="true"></i> Styleguide</a>
+		</li>
 		<li class="g-sidebar-header">MAIN NAVIGATION</li>
 		{% for nav in api('guideline/get-navigation') %}
 			{% if nav.items.length %}

@@ -10,17 +10,25 @@ var config = {
 	out : pkg.generate.out || '_site'
 };
 
-exec('rm -rf '+ config.out, function(){
-	fs.mkdir( config.out, function(){
-		fs.mkdir( config.out + '/assets');
-		exec('cp -rf www/assets/dist ' + config.out + '/assets/dist' );
+console.log('Running build...')
+exec('npm run build', function(){
+	console.log('Cleaning output directories');
+	exec('rm -rf '+ config.out, function(){
+		console.log('Creating new directories');
+		fs.mkdir( config.out, function(){
+			console.log('Copying assets...');
+			fs.mkdir( config.out + '/assets', function(){
+				console.log('Generating html files');
+				exec('cp -rf www/assets/dist ' + config.out + '/assets/dist', function(){
+					glob.sync( './www/views/'+ config.src +'/**/*' ).map(get);
+				});
+			});
+		});
 	});
 });
 
-glob.sync( './www/views/'+ config.src +'/**/*' ).map(get);
-
 function get( url ){
-	var file = path.basename( url, '.htm' );
+	var file = path.basename( url, '.njk' );
 	http.get({
 		path: 'http://localhost/' + config.src + '/' + file,
 		port: 3000
@@ -32,8 +40,10 @@ function create( file ){
 		var body = '';
 		res.on('data', function(d) { body += d; });
 		res.on('end', function() {
+			body = body.replace(/\/assets/g, 'assets');
 			fs.writeFile( config.out + '/' + file + '.htm', body, function(err){
 				if( err ) console.log( err );
+				else console.log('Finished.');
 			})
 		});
 	};

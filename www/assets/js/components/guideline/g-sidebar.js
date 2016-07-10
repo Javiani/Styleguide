@@ -1,6 +1,6 @@
 import jails from 'jails'
 
-jails.controller('g-sidebar', function( html, data ){
+jails.component('g-sidebar', function( html, data ){
 
 	let sidebar = $( html )
 

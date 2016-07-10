@@ -14,6 +14,13 @@
 </head>
 
 	<body>
+
+		<section class="g-description g-markdown">
+			{% filter markdown %}
+				{% block markdown%}{% endblock %}
+			{% endfilter %}
+		</section>
+
 		<section class="g-code">
 			{% block content %}{% endblock %}
 		</section>

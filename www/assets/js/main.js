@@ -2,7 +2,7 @@ import jails from 'jails'
 import scriptjs from 'scriptjs'
 
 let jquery = 'node_modules/jquery/dist/jquery.min.js'
-let jquerycdn = '//ajax.googleapis.com/ajax/libs/jquery/3.3.0/jquery.min.js'
+let jquerycdn = '//code.jquery.com/jquery-3.1.0.min.js'
 let app = document.getElementById('main-script').getAttribute('data-application')
 let dependencies = [app]
 

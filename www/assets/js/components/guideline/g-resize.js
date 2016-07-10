@@ -1,6 +1,6 @@
 import jails from 'jails'
 
-jails.controller('g-resize', function( html, data ){
+jails.component('g-resize', function( html, data ){
 
 	let device, buttons
 

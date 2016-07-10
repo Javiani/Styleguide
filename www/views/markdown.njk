@@ -1,5 +1,10 @@
 {% extends 'layouts/guideline/documentation.njk' %}
 
+{% block header %}
+	<h1 class="g-h2">Living StyleGuide</h1>
+	<p>Documentation's page</p>
+{% endblock %}
+
 {% block content %}
 	<section class="g-content g-markdown">
 		{{ markdown | safe }}
