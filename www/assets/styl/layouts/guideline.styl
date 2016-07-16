@@ -4,30 +4,33 @@
 
 .g-html
 
-    .g-sidebar
-        position:fixed
-        background-color:#222d32
-        height:100%
-        width:250px
-        z-index:9
-        left:0
-        top:0
-        transition: transform .4s
-        transform: translateX(-100%)
+	.g-sidebar
+		position:fixed
+		background-color:#222d32
+		height:100%
+		width:250px
+		z-index:9
+		left:0
+		top: 0
+		transition: transform .4s
+		transform: translateX(-100%)
 
-    .g-container
-        height:100%
+	.g-header
+		margin-bottom: 30px
 
-    .g-content
+	.g-container
+		height:100%
 
-        margin:0 auto
-        max-width:desktop
+	.g-content
 
-        @media ( max-width: desktop )
-            max-width:tablet-landscape
-        @media ( max-width:tablet-landscape )
-            max-width:tablet
-        @media ( max-width:tablet )
-            max-width:phone-landscape
-        @media ( max-width:phone-landscape )
-            center( auto, pad:50px )
+		margin: 0 auto
+		max-width: desktop
+
+		@media ( max-width: desktop )
+			max-width:tablet-landscape
+		@media ( max-width:tablet-landscape )
+			max-width:tablet
+		@media ( max-width:tablet )
+			max-width:phone-landscape
+		@media ( max-width:phone-landscape )
+			center( auto, pad:50px )

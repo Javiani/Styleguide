@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "mkdir -p www/assets/dist/css/pages ; npm run watch:css & npm run watch:js",
-    "watch:css": "stylus www/assets/styl/pages -o www/assets/dist/css/pages -w -u jeet",
+    "start": "mkdir -p www/assets/dist/css/pages ; mkdir -p www/assets/dist/css/pages/guideline ; npm run watch:css & npm run watch:js",
+    "watch:css": "stylus www/assets/styl/pages/guideline -o www/assets/dist/css/pages/guideline -w -u jeet",
     "watch:js": "webpack --watch --dev",
 	"build":"stylus www/assets/styl/pages -o www/assets/dist/css/pages -u jeet -c && webpack",
 	"server":"node server"

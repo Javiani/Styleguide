@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="g-html ">
 <head>
-	<title>Documentation Page</title>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>
+		{% block title %} Guideline Page {% endblock %}
+	</title>
 
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
-	<link rel="stylesheet" href="/assets/dist/css/pages/guideline.css" />
+	{% include 'components/guideline/head.njk' %}
 
-	<script type="text/javascript" id="main-script" src="/assets/dist/js/main.min.js" data-application="/assets/dist/js/guideline.min.js"></script>
+	{% block style %}
+
+	{% endblock %}
+
+	{% block javascript %}
+		<script type="text/javascript" id="main-script" src="/assets/dist/js/main.min.js" data-application="/assets/dist/js/guideline.min.js"></script>
+	{% endblock %}
+
 </head>
 
 	<body data-app="guideline" class="g-body">
 
-		<header class="g-header" data-controller="g-header">
-		    <div class="g-content">
-				{% block header %}
-					<h1 class="g-h2">Living StyleGuide</h1>
-					<p>
-						The Living Style Guide is a resource for designers, developers and product managers.<br />
-						Use it to maintain modular front-end code and visual concistency.
-					</p>
-				{% endblock %}
-		    </div>
+		<header class="g-header">
+			<div class="g-content">
+				{% filter markdown %}
+					{% block header %}{% endblock %}
+				{% endfilter %}
+			</div>
 		</header>
 
 		<main class="g-container">
@@ -33,10 +34,14 @@
 				{% include 'components/guideline/sidebar.njk' %}
 			</section>
 
-			{% block content %}Default content{% endblock %}
+			<section class="g-content">
+				{% filter markdown %}
+					{% block content %}{% endblock %}
+				{% endfilter %}
+			</section>
 
 		</main>
 
-    </body>
+	</body>
 
 </html>

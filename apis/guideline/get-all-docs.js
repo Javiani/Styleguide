@@ -1,7 +1,7 @@
 var path = require('path'),
     glob = require('glob');
 
-module.exports = function(){
+module.exports = (function(){
 
     var menu = [],
         files = glob.sync('./www/views/docs/**/*.md');
@@ -19,4 +19,4 @@ module.exports = function(){
     });
 
 	return menu;
-};
+})();

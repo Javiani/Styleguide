@@ -1,6 +1,0 @@
-{% set service 	 = api('guideline/get-component') %}
-{% set component = service( request.query.url ) %}
-
-{% block content %}
-	{% include component.url + '.njk' %}
-{% endblock %}

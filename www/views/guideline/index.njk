@@ -1,0 +1,23 @@
+{% extends 'layouts/guideline/documentation.njk' %}
+
+{% block style %}
+	<link rel="stylesheet" type="text/css" href="/assets/dist/css/pages/guideline/sample.css"  />
+{% endblock %}
+
+{% block header %}
+
+# Sticky Menu
+Um grande componente pra ser usado onde você quiser...
+
+{% endblock %}
+
+{% block content %}
+
+Este é um exemplo de markdown com html:
+{% include 'components/menu/stick-menu.njk' %}
+
+Código:
+```html
+{% include 'components/menu/stick-menu.njk' %}
+```
+{% endblock %}

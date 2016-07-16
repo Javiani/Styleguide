@@ -6,10 +6,10 @@ module.exports = function( app, config ){
 
 	return function( req, res, next ){
 
-		global.api = function( url ){
+		global.get = function( url ){
 			var module;
 			try{
-				module = require( '../'+ path.normalize( config.folder + '/'+ url) )()
+				module = require( '../'+ path.normalize( config.folder + '/'+ url) )
 			}catch(e){
 				console.log(e);
 			}
@@ -22,7 +22,7 @@ module.exports = function( app, config ){
 		env.addGlobal('console', console);
 		env.addGlobal('request', global.request);
 		env.addGlobal('response', global.response);
-		env.addGlobal('api', global.api);
+		env.addGlobal('get', global.get);
 
 		next();
 	};
