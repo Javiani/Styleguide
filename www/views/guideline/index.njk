@@ -1,23 +1,35 @@
 {% extends 'layouts/guideline/documentation.njk' %}
 
 {% block style %}
+	{{super()}}
 	<link rel="stylesheet" type="text/css" href="/assets/dist/css/pages/guideline/sample.css"  />
 {% endblock %}
 
 {% block header %}
 
-# Sticky Menu
-Um grande componente pra ser usado onde você quiser...
+	{% filter markdown %}
+		# Menus
+		### Todas as variações de Menu que possuem no site.
+	{% endfilter %}
 
 {% endblock %}
 
 {% block content %}
 
-Este é um exemplo de markdown com html:
-{% include 'components/menu/stick-menu.njk' %}
+	{% filter markdown %}
+		> ## Sticky Menu
+		> Toggleable, contextual menu for displaying lists of links.<br />
+		> Made interactive with the dropdown JavaScript plugin.
+	{% endfilter %}
 
-Código:
-```html
-{% include 'components/menu/stick-menu.njk' %}
-```
+	<section class="g-example">
+		{% include 'components/menu/stick-menu.njk' %}
+	</section>
+
+	{% filter markdown %}
+		```html
+			{% include 'components/menu/stick-menu.njk' %}
+		```
+	{% endfilter %}
+
 {% endblock %}

@@ -1,24 +1,20 @@
-/*
-    @Routes
-*/
-module.exports = function( app, redirect ){
+import fs from 'fs'
+import showdown from 'showdown'
 
-    var fs = require('fs');
+export default ( app, redirect )=>{
 
-    return function( req, res, next ){
+	let converter = new showdown.Converter()
+
+	return function( req, res, next ){
 
 		if( redirect ){
-			res.redirect( redirect );
-			return;
+			res.redirect( redirect )
+			return
 		}
 
-		var showdown  = require('showdown'),
-			converter = new showdown.Converter();
+		let file = req.params[0],
+			text  = fs.readFileSync( `./www/views${file}.md`, 'utf8')
 
-		var file = req.params[0],
-			url   = './www/views',
-			text  = fs.readFileSync(url + file + '.md', 'utf8');
-
-		res.render('markdown.njk', { markdown :converter.makeHtml( text ) });
+		res.render('markdown.njk', { markdown :converter.makeHtml( text ) })
 	}
-};
+}

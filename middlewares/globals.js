@@ -1,30 +1,24 @@
-var path = require('path');
+import path from 'path'
 
-module.exports = function( app, config ){
+export default ( app, config ) => {
 
-	var env = config.env;
+	let env = config.env
+	global.root = config.__dirname
 
-	return function( req, res, next ){
+	env.addGlobal('console', console)
+	env.addGlobal('root', global.root)
+	env.addGlobal('require', ( url ) =>{
+		return require( path.resolve( config.__dirname, url ))
+	})
 
-		global.get = function( url ){
-			var module;
-			try{
-				module = require( '../'+ path.normalize( config.folder + '/'+ url) )
-			}catch(e){
-				console.log(e);
-			}
-			return module;
-		};
+	return ( req, res, next ) =>{
 
-		global.request = req;
-		global.response = res;
+		global.request = req
+		global.response = res
 
-		env.addGlobal('console', console);
-		env.addGlobal('request', global.request);
-		env.addGlobal('response', global.response);
-		env.addGlobal('get', global.get);
+		env.addGlobal('request', global.request)
+		env.addGlobal('response', global.response)
 
-		next();
-	};
-
+		next()
+	}
 }

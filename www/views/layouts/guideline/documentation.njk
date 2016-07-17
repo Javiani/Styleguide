@@ -1,3 +1,5 @@
+{% import 'macros/jails.njk' as jails %}
+
 <!DOCTYPE html>
 <html lang="pt-BR" class="g-html ">
 <head>
@@ -9,22 +11,22 @@
 	{% include 'components/guideline/head.njk' %}
 
 	{% block style %}
-
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/github.min.css">
 	{% endblock %}
 
 	{% block javascript %}
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js" async></script>
 		<script type="text/javascript" id="main-script" src="/assets/dist/js/main.min.js" data-application="/assets/dist/js/guideline.min.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
 	{% endblock %}
 
 </head>
 
-	<body data-app="guideline" class="g-body">
+	<body class="g-body" {{ jails.app("guideline") }}>
 
 		<header class="g-header">
 			<div class="g-content">
-				{% filter markdown %}
-					{% block header %}{% endblock %}
-				{% endfilter %}
+				{% block header %}{% endblock %}
 			</div>
 		</header>
 
@@ -35,9 +37,7 @@
 			</section>
 
 			<section class="g-content">
-				{% filter markdown %}
-					{% block content %}{% endblock %}
-				{% endfilter %}
+				{% block content %}{% endblock %}
 			</section>
 
 		</main>

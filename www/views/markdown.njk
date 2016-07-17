@@ -2,11 +2,13 @@
 
 {% block header %}
 
-# Living StyleGuide
-Documentation's page
+	{% filter markdown %}
+		# Living StyleGuide
+		### Documentation's page
+	{% endfilter %}
 
 {% endblock %}
 
 {% block content %}
-	<section class="g-markdown">{{ markdown }}</section>
+	{{ markdown | markdown }}
 {% endblock %}

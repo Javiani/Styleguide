@@ -1,3 +1,5 @@
+{% import 'macros/jails.njk' as jails %}
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,7 +12,7 @@
 	<script type="text/javascript" id="main-script" src="/assets/dist/js/main.min.js" data-application="/assets/dist/js/{{app}}.min.js" async></script>
 </head>
 
-	<body data-app="{{app}}">
+	<body {{jails.app(app)}}>
 
 		<main class="institucional">
 			<header class="header">Header</header>

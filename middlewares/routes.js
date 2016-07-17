@@ -1,39 +1,39 @@
-var path = require('path');
+import path from 'path'
+import markdown from './markdown'
+import service from './service'
 
-module.exports = function( app, env ){
+export default ( app, env )=>{
 
-	//Globals
-	var globals = require('./globals');
-	app.use( globals(app, { folder:'apis', env :env }) );
+	//Services
+	app.get('/mock/*', service( app, {
+		__dirname: path.resolve( __dirname, 'server', 'mock' )
+	}))
 
-	//Api's
-	var api = require('./get');
-	app.get(/\bservice\b/, api(app, { folder: 'apis'}) );
-
-	var markdown = require('./markdown');
-	app.get('*.md', markdown(app));
-	app.get('/docs/', markdown(app, '/docs/index.md'));
+	// Handle Markdown files
+	app.get('*.md', markdown(app))
+	app.get('/docs/', markdown(app, '/docs/index.md'))
 
 	//Default routes
-	app.get('*', function( req, res, next ){
+	app.get('*', ( req, res, next )=>{
 
-		var url = path.resolve( req.path );
-		render( url );
+		let url = path.resolve( req.path )
+		render( url )
 
 		function render( url ){
 			res.render( url.replace(/^\//, ''), function( err, content ){
-				var name = path.basename( url );
+
+				let name = path.basename( url )
 				if( err ){
 					if( name != 'index' )
-						render( path.resolve( url, 'index') );
+						render( path.resolve( url, 'index') )
 					else if( err.message.match(/template not found/) )
-						res.render('404');
+						res.render('404')
 					else
-						next( err );
+						next( err )
 				}else{
-					res.send( content );
+					res.send( content )
 				}
-			});
+			})
 		}
-	});
-};
+	})
+}

@@ -1,11 +1,13 @@
+{% set navigation = require('server/guideline/get-navigation')  %}
+
 <nav>
 	<a href="#" class="g-sidebar-button"><i class="fa fa-bars"></i></a>
 	<ul class="g-sidebar-menu">
 		<li>
-			<a href="/docs/"><i class="fa fa-home" aria-hidden="true"></i> Styleguide</a>
+			<a href="/docs/"><i class="fa fa-home"></i> Styleguide</a>
 		</li>
 		<li class="g-sidebar-header">MAIN NAVIGATION</li>
-		{% for nav in get('guideline/get-navigation') %}
+		{% for nav in navigation.default %}
 			{% if nav.items.length %}
 				<li>
 					<a href="#" class="g-js"><i class="fa {{ nav.icon }}"></i> <span>{{ nav.section }}</span> <i class="fa fa-angle-left pull-right"></i></a>

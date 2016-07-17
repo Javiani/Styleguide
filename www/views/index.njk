@@ -2,14 +2,18 @@
 
 {% block header %}
 
-# Living Styleguide
-The Living Style Guide is a resource for designers, developers and product managers.<br />
-Use it to maintain modular front-end code and visual concistency.
+	{% filter markdown %}
+		# Living Styleguide
+		The Living Style Guide is a resource for designers, developers and product managers.<br />
+		Use it to maintain modular front-end code and visual concistency.
+	{% endfilter %}
 
 {% endblock %}
 
 {% block content %}
 
-# /Index
+{% filter markdown %}
+	# /Index
+{% endfilter %}
 
 {% endblock %}
