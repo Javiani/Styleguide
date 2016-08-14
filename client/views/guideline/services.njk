@@ -9,7 +9,7 @@
 	{% for name, data in mock.data %}
 		<h2 id="{{name}}" class="gl">{{name}}</h2>
 
-		<table class="gl table table-striped">
+		<table class="gl">
 			<tbody>
 				{% for key, value in data %}
 					{% set type = getType(value) %}
@@ -18,7 +18,7 @@
 							<strong class="gl">{{ key }}</strong>
 						</td>
 						<td>
-							<label class="gl label label-warning" for="">{{ type }}</label>
+							<label class="gl" for="">{{ type }}</label>
 							{% if type != 'Object' %}
 								<td>{{ value }}</td>
 							{% else %}
