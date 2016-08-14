@@ -1,39 +1,35 @@
 import path from 'path'
-import markdown from './markdown'
-import service from './service'
 
-export default ( app, env )=>{
+export default ( options ) =>{
 
-	//Services
-	app.get('/mock/*', service( app, {
-		__dirname: path.resolve( __dirname, 'server', 'mock' )
-	}))
+	return ( req, res, next ) => {
 
-	// Handle Markdown files
-	app.get('*.md', markdown(app))
-	app.get('/docs/', markdown(app, '/docs/index.md'))
+		let url 	= path.resolve( req.path )
+		let config 	= { url, req, res, next, options }
 
-	//Default routes
-	app.get('*', ( req, res, next )=>{
+		render( config )
+	}
+}
 
-		let url = path.resolve( req.path )
-		render( url )
+function render( config ){
 
-		function render( url ){
-			res.render( url.replace(/^\//, ''), function( err, content ){
+	let { url, res, next } = config
 
-				let name = path.basename( url )
-				if( err ){
-					if( name != 'index' )
-						render( path.resolve( url, 'index') )
-					else if( err.message.match(/template not found/) )
-						res.render('404')
-					else
-						next( err )
-				}else{
-					res.send( content )
-				}
-			})
+	res.render( url.replace(/^\//, ''), function( err, content ){
+
+		let name = path.basename( url )
+
+		if( err ){
+			if( !path.basename(name) && name != 'index' ){
+				config.url = path.resolve( url, 'index' )
+				render( config )
+			}
+			else if( err.message.match(/template not found|Failed to lookup/) )
+				res.render( config.options['404'] )
+			else
+				next( err )
+		}else{
+			res.send( content )
 		}
 	})
 }

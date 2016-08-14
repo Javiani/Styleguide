@@ -1,0 +1,28 @@
+{% extends 'layouts/guideline/components.njk' %}
+
+{% set app = "buttons" %}
+
+{% block styles %}
+	{{ super() }}
+	<link rel="stylesheet" href="/assets/dist/css/home.css" type="text/css" />
+{% endblock %}
+
+{% block scripts %}
+	{{ super() }}
+	<script type="text/javascript" src="/assets/dist/js/guideline/buttons.min.js" async></script>
+{% endblock %}
+
+{% set components = [
+		{
+			title 	:'Base Button',
+			url 	:'components/buttons/base-button.njk'
+		},
+		{
+			title 	:'Base Button ( Disabled )',
+			url 	:'components/buttons/base-button.njk',
+			options : {
+				disabled :true
+			}
+		}
+	]
+%}

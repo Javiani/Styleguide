@@ -1,0 +1,17 @@
+{% extends 'layouts/guideline/default.njk' %}
+
+{% block title %} Docs {% endblock %}
+
+{% block styles %}
+	{{ super() }}
+{% endblock %}
+
+{% block header %}
+	Docs
+{% endblock %}
+
+{% block content %}
+	<section class="gl-markdown">
+		{{ markdown }}
+	</section>
+{% endblock %}

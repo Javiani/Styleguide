@@ -1,0 +1,29 @@
+{% extends 'layouts/guideline/default.njk' %}
+
+{% block header %}
+	Menu
+{% endblock %}
+
+{% block content %}
+
+{% for item in components %}
+
+<div class="gl-markdown">
+	{% filter markdown %}## {{ item.title }}{% endfilter %}
+</div>
+
+<div class="gl-component">
+	{% set options = item.options %}
+	{% include item.url %}
+</div>
+
+{# whitespace handling #}
+{% filter markdown %}
+```js
+{% include item.url %}
+```
+{% endfilter %}
+{# whitespace handling #}
+	{% endfor %}
+
+{% endblock %}

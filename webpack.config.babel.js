@@ -6,8 +6,9 @@ let optimize = webpack.optimize
 let dev	 	 = !!process.argv.filter((item)=>item == '--dev').length
 
 let config = {
-	js	 :'./www/assets/js',
-	dist :__dirname + '/www/assets/dist/js'
+	js	 :'./client/assets/js',
+	dist :__dirname + '/client/assets/dist/js',
+	publicPath :'./assets/dist/js/'
 }
 
 export default {
@@ -15,16 +16,17 @@ export default {
 	devtool :'source-map',
 
 	entry : glob.sync( `${config.js}/apps/**/*.js`).reduce( entries, {
-		main:[ `${config.js}/main${(dev?'.dev':'')}` ]
+		main:[ `${config.js}/main` ]
 	}),
 
 	output: {
 		path: config.dist,
-		filename: '[name].min.js'
+		filename: '[name].min.js',
+		publicPath: config.publicPath
 	},
 
 	resolve:{
-		root  :config.js,
+		root :[ path.resolve(config.js) ],
 		alias :{
 			jails :'jails-js/source/jails.js',
 			mods  :'jails-modules',
