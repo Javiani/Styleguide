@@ -3,8 +3,6 @@
 {% import 'components/include.njk' as include %}
 {% import 'components/guideline/sidebar.njk' as sidebar %}
 
-{% set app = 'guideline ' + app if app else 'guideline' %}
-
 <!DOCTYPE html>
 <html lang="pt-BR" class="gl-html">
 <head>
@@ -26,7 +24,7 @@
 
 </head>
 
-	<body class="gl-body" {{ jails.component(app) }}>
+	<body class="gl-body" {{ jails.component('guideline ' + app if app else 'guideline') }}>
 
 		{% block aside %}
 			<aside class="gl-sidebar">
