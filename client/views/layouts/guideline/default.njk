@@ -1,4 +1,6 @@
-{% from 'macros/jails.njk' import component %}
+{% import 'components/jails.njk' as jails %}
+{% import 'components/guideline/sidebar.njk' as sidebar %}
+{% import 'components/head.njk' as head %}
 
 {% set app = 'guideline ' + app if app else 'guideline' %}
 
@@ -10,7 +12,7 @@
 		{% block title %} Guideline Page {% endblock %}
 	</title>
 
-	{% include 'components/head.njk' %}
+	{{ head.metatags() }}
 
 	{% block styles %}
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/arduino-light.min.css" />
@@ -19,17 +21,15 @@
 
 	{% block scripts %}
 		<script type="text/javascript" id="main-script" src="/assets/dist/js/main.min.js" data-application="/assets/dist/js/guideline/index.min.js" async></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
-		<script>hljs.initHighlightingOnLoad();</script>
 	{% endblock %}
 
 </head>
 
-	<body class="gl-body" {{ component(app) }}>
+	<body class="gl-body" {{ jails.component(app) }}>
 
-		{% block sidebar %}
+		{% block aside %}
 			<aside class="gl-sidebar">
-				{% include 'components/guideline/sidebar.njk' %}
+				{{ sidebar.menu() }}
 			</aside>
 		{% endblock %}
 

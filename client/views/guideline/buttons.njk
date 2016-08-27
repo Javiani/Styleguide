@@ -1,4 +1,5 @@
-{% extends 'layouts/guideline/components.njk' %}
+{% extends 'layouts/guideline/default.njk' %}
+{% import 'components/buttons/button.njk' as button %}
 
 {% set app = "buttons" %}
 
@@ -12,17 +13,26 @@
 	<script type="text/javascript" src="/assets/dist/js/guideline/buttons.min.js" async></script>
 {% endblock %}
 
-{% set components = [
-		{
-			title 	:'Base Button',
-			url 	:'components/buttons/base-button.njk'
-		},
-		{
-			title 	:'Base Button ( Disabled )',
-			url 	:'components/buttons/base-button.njk',
-			options : {
-				disabled :true
-			}
-		}
-	]
-%}
+{% block content %}
+
+	<div class="gl-markdown">
+		{% filter markdown %}
+			## Base Button
+		{% endfilter %}
+	</div>
+
+	<div class="gl-component">
+		{{ button.primary() }}
+	</div>
+
+	<div class="gl-markdown">
+		{% filter markdown %}
+			## Base Button ( Desabilitado )
+		{% endfilter %}
+	</div>
+
+	<div class="gl-component">
+		{{ button.primary( disabled = true ) }}
+	</div>
+
+{% endblock %}

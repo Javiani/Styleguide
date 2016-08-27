@@ -1,0 +1,5 @@
+{% import 'components/jails.njk' as jails %}
+
+{% macro primary( disabled = false, text = 'Go' ) %}
+	<button {{ jails.component('button') }} class="base-button" {{ "disabled" if disabled }}>{{text}}</button>
+{% endmacro %}

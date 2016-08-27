@@ -1,15 +1,17 @@
-<nav class="gl-menu">
-	<ul>
-		<li class="title">StyleGuide</li>
-		<li><a href="/docs">Docs</a></li>
-		<li><a href="/guideline/services">Services</a></li>
-	</ul>
-	<ul>
-		<li class="title">Components</li>
-		<li><a href="/guideline/buttons">Buttons</a></li>
-	</ul>
-	<ul>
-		<li class="title">Pages</li>
-		<li><a href="/pages/home" target="_blank">Home</a></li>
-	</ul>
-</nav>
+{% macro menu() %}
+	<nav class="gl-menu">
+		<ul>
+			<li class="title">StyleGuide</li>
+			<li><a href="/docs">Docs</a></li>
+			<li><a href="/guideline/services">Services</a></li>
+		</ul>
+		<ul>
+			<li class="title">Components</li>
+			<li><a href="/guideline/buttons">Buttons</a></li>
+		</ul>
+		<ul>
+			<li class="title">Pages</li>
+			<li><a href="/pages/home" target="_blank">Home</a></li>
+		</ul>
+	</nav>
+{% endmacro %}
