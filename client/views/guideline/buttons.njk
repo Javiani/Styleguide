@@ -35,4 +35,15 @@
 		{{ button.primary( disabled = true ) }}
 	</div>
 
+	<div class="gl-markdown">
+		{% filter markdown %}
+			## Base Button ( Invertido )
+		{% endfilter %}
+	</div>
+
+	<div class="gl-component">
+		{{ button.primary( inverted = true ) }}
+	</div>
+
+
 {% endblock %}

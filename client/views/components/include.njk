@@ -3,11 +3,15 @@
 {% set fs = require('fs') %}
 {% set path = require('path') %}
 
-{% macro import( url ) %}
+{% macro style( url ) %}
 	{{ local.styles.push( url )}}
 {% endmacro %}
 
-{% macro print() %}
+{# {% macro javascript( url ) %}
+	{{ local.js.push( url )}}
+{% endmacro %} #}
+
+{% macro css() %}
 	{% set string = [] %}
 	{% for styl in local.styles %}
 		{{ "" if string.push(fs.readFileSync(path.resolve(__dirname + '/../client/assets/styl/components/' + styl), 'utf8')) }}

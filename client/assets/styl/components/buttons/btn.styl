@@ -1,15 +1,33 @@
 @import 'theme'
 
-.btn
-	border-radius: 30px
+$default
 	background-color: main-color
-	padding: 15px 40px
-	border: 0
-	display: block
+	border: 1px solid transparent
 	color: #fff
+
+$inverted
+	background-color: transparent
+	color: main-color
+	border-color: main-color
+
+.btn
+	@extends $default
+	border-radius: 30px
+	padding: 15px 40px
+	display: block
 	cursor: pointer
 	outline: none
 	font-size: 15px
 
+	&:hover:not([disabled])
+		@extends $inverted
+
 	&[disabled]
+		@extends $default
 		background-color: rgba( main-color, .5)
+
+	&.-inverted
+		@extends $inverted
+		&:hover
+			background-color: main-color
+			color: #fff
