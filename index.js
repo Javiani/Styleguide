@@ -33,7 +33,7 @@ class Application extends JerryMice{
 		app.get('/mock/*', this.middleware.services())
 		app.get('/*.md', (req, res) => res.render('layouts/docs') )
 		app.get('/docs/', (req, res) => res.redirect('/docs/index.md'))
-        app.get( '/', ( req, res) => res.redirect('/pages/guideline'))
+        app.get( '/', ( req, res) => res.redirect('/pages/guideline/home'))
 		app.get( '*', this.middleware.routes({ 404 :'pages/404' }))
 	}
 }
