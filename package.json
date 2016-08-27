@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "babel-node index --presets es2015",
-    "watch:css": "stylus client/assets/styl/pages -o client/assets/dist/css/ -u jeet --include node_modules -w",
+    "watch:css": "stylus client/assets/styl/pages -o client/assets/dist/css/ -u jeet --include client/assets/styl -w",
     "watch:js": "webpack --watch --dev"
   },
   "author": "Javiani",

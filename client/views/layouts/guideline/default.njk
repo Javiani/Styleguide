@@ -1,6 +1,7 @@
 {% import 'components/jails.njk' as jails %}
-{% import 'components/guideline/sidebar.njk' as sidebar %}
 {% import 'components/head.njk' as head %}
+{% import 'components/style.njk' as style %}
+{% import 'components/guideline/sidebar.njk' as sidebar %}
 
 {% set app = 'guideline ' + app if app else 'guideline' %}
 
@@ -17,6 +18,7 @@
 	{% block styles %}
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/styles/arduino-light.min.css" />
 		<link rel="stylesheet" href="/assets/dist/css/guideline.css" />
+		<style type="text/css">{{ style.print() }}</style>
 	{% endblock %}
 
 	{% block scripts %}

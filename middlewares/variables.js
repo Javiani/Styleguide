@@ -13,6 +13,8 @@ export default ( app, env ) => {
 		env.addGlobal('response', global.response)
 		env.addGlobal('console', global.console)
 		env.addGlobal('getType', ( variable )=> variable.constructor.name )
+		env.addGlobal('local', { styles:[] })
+		env.addGlobal('__dirname', __dirname)
 
 		next()
 	}

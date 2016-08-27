@@ -1,5 +1,8 @@
 {% import 'components/jails.njk' as jails %}
+{% import 'components/style.njk' as style %}
+
+{{ style.import('buttons/btn.styl') }}
 
 {% macro primary( disabled = false, text = 'Go' ) %}
-	<button {{ jails.component('button') }} class="base-button" {{ "disabled" if disabled }}>{{text}}</button>
+	<button {{ jails.component('button') }} class="btn" {{ "disabled" if disabled }}>{{text}}</button>
 {% endmacro %}
