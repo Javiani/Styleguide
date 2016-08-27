@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "babel-node index --presets es2015",
-    "watch:css": "stylus client/assets/styl/pages -o client/assets/dist/css/ -u jeet --include client/assets/styl -w",
-    "watch:js": "webpack --watch --dev"
+    "watch": "webpack --watch --dev"
   },
   "author": "Javiani",
   "license": "ISC",
@@ -20,14 +19,15 @@
     "glob": "^7.0.5",
     "nunjucks": "^2.4.2",
     "showdown": "^1.4.2",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "css-loader": "^0.24.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "style-loader": "^0.13.1"
   },
   "devDependencies": {
     "jails-components": "git://github.com/jails-org/Components.git#v2",
     "jails-js": "2.0.0-beta",
     "jails-modules": "git://github.com/jails-org/Modules.git#v2",
-    "jeet": "6.1.2",
-    "scriptjs": "^2.5.8",
-    "stylus": "^0.54.5"
+    "scriptjs": "^2.5.8"
   }
 }

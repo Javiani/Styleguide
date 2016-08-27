@@ -1,0 +1,34 @@
+{% extends 'layouts/default/default.njk' %}
+
+{% block styles %}
+	<link rel="stylesheet" href="/home/home.css" />
+{% endblock %}
+
+{% block scripts %}
+	<script type="text/javascript" id="main-script" src="/main/main.min.js" data-application="/home/home.min.js" async></script>
+{% endblock %}
+
+{% block content %}
+
+	<section class="wrapper" data-component="home">
+
+		<header class="header">
+			<h1>Header</h1>
+		</header>
+
+		<aside class="sidebar">Sidebar</aside>
+
+		<section class="content">
+
+			<h1>Welcome Home!</h1>
+
+			{% for i in range(10) %}
+				<p>lorem ipsum</p>
+			{% endfor %}
+
+			<p>The last Lorem ipsum</p>
+
+		</section>
+	</section>
+
+{% endblock %}

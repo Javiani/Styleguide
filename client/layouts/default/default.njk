@@ -1,0 +1,30 @@
+{% import 'components/head.njk' as head %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+	<title>
+		{% block title %} Page {% endblock %}
+	</title>
+
+	{{ head.metatags() }}
+
+	{% block styles %}{% endblock %}
+	{% block scripts %}{% endblock %}
+
+</head>
+
+<body>
+
+	<div class="container">
+		{% block content %}{% endblock %}
+	</div>
+
+	<footer class="footer">
+		<h3>Footer</h3>
+	</footer>
+
+</body>
+
+</html>

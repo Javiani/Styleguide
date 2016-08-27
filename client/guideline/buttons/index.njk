@@ -1,0 +1,48 @@
+{% extends 'layouts/guideline/guideline.njk' %}
+{% import 'components/button/button.njk' as button %}
+
+{% set app = "buttons" %}
+
+{% block styles %}
+	{{ super() }}
+	<link rel="stylesheet" href="/buttons/buttons.css" type="text/css" />
+{% endblock %}
+
+{% block scripts %}
+	{{ super() }}
+	<script type="text/javascript" src="/buttons/buttons.min.js" async></script>
+{% endblock %}
+
+{% block content %}
+
+	<div class="gl-markdown">
+		{% filter markdown %}
+			## Base Button
+		{% endfilter %}
+	</div>
+
+	<div class="gl-component">
+		{{ button.primary() }}
+	</div>
+
+	<div class="gl-markdown">
+		{% filter markdown %}
+			## Base Button ( Desabilitado )
+		{% endfilter %}
+	</div>
+
+	<div class="gl-component">
+		{{ button.primary( disabled = true ) }}
+	</div>
+
+	<div class="gl-markdown">
+		{% filter markdown %}
+			## Base Button ( Invertido )
+		{% endfilter %}
+	</div>
+
+	<div class="gl-component">
+		{{ button.primary( inverted = true ) }}
+	</div>
+
+{% endblock %}

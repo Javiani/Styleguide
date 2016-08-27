@@ -1,0 +1,3 @@
+{% macro primary( disabled = false, text = 'Go', inverted = false ) %}
+	<button data-component="button" class="button {{"-inverted" if inverted }}" {{ "disabled" if disabled }}>{{text}}</button>
+{% endmacro %}

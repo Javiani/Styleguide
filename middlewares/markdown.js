@@ -47,6 +47,6 @@ function markdown( req ){
 	let file = req.path
 	if( !file.match(/\.md/) ) return ''
 
-	let text  = fs.readFileSync( `./client/views${file}`, 'utf8')
+	let text  = fs.readFileSync( `./client/${file}`, 'utf8')
 	return converter.makeHtml( text )
 }

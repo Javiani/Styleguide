@@ -20,12 +20,17 @@ function render( config ){
 		let name = path.basename( url )
 
 		if( err ){
-			if( !path.basename(name) && name != 'index' ){
+
+			let notfound = err.message.match(/template not found|Failed to lookup/)
+
+			if(  notfound && name != 'index' ){
 				config.url = path.resolve( url, 'index' )
 				render( config )
 			}
-			else if( err.message.match(/template not found|Failed to lookup/) )
+			else if( notfound ){
 				res.render( config.options['404'] )
+				console.log( err.message )
+			}
 			else
 				next( err )
 		}else{
