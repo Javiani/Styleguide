@@ -17,20 +17,8 @@ export default {
 
 	devtool :'source-map',
 
-	entry : glob.sync( `${config.js}/apps/**/*.js`).reduce( entries, {
-		main:[ './assets/main/main.js', './assets/main/main.css' ],
-		home:[
-			`${config.js}/pages/home/home.js`,
-			`${config.js}/pages/home/home.css`
-		],
-		guideline:[
-			`${config.js}/pages/guideline/guideline.js`,
-			`${config.js}/pages/guideline/guideline.css`
-		],
-        buttons :[
-            `${config.js}/guideline/buttons/buttons.js`,
-			`${config.js}/guideline/buttons/buttons.css`
-        ]
+	entry : glob.sync( `${config.js}/pages/**/*{.js,.css}`).reduce( entries, {
+		main:[ './assets/main/main.js', './assets/main/main.css' ]
 	}),
 
 	output: {
@@ -77,12 +65,11 @@ export default {
 
 function entries( acc, file ){
 
-	let filename  = path.basename(file, '.js'),
-		directory = path.dirname(file),
-		dir = directory.split(/\//).pop()
+	let filename  = file.replace(path.extname(file), '')
+	filename = filename.replace(config.js+'/pages/', '')
+	filename = path.basename(filename)
 
-	filename = dir == 'apps' ? filename : `${dir}/${filename}`
-	acc[filename] = `./${file}`
+	acc[filename]? acc[filename].push(file) : acc[filename] = [file]
 
 	return acc
 }
