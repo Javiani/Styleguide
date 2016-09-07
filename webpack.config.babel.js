@@ -8,7 +8,7 @@ let dev	 	 = process.env.NODE_ENV != 'production'
 
 let config = {
 	client	   :'./client',
-	dist       :__dirname + '/dist/',
+	dist	   :__dirname + '/dist/',
 	publicPath :'./dist/js/'
 }
 
