@@ -4,12 +4,11 @@ import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
 let optimize = webpack.optimize
-let dev	 	 = !!process.argv.filter((item)=>item == '--dev').length
+let dev	 	 = process.env.NODE_ENV != 'production'
 
 let config = {
-	main :'./assets/js',
-	js	 :'./client',
-	dist :__dirname + '/dist/',
+	client	   :'./client',
+	dist       :__dirname + '/dist/',
 	publicPath :'./dist/js/'
 }
 
@@ -17,8 +16,11 @@ export default {
 
 	devtool :'source-map',
 
-	entry : glob.sync( `${config.js}/pages/**/*{.js,.css}`).reduce( entries, {
-		main:[ './assets/main/main.js', './assets/main/main.css' ]
+	entry : glob.sync( `${config.client}/pages/**/*{.js,.css}`).reduce( entries, {
+		main:[
+			`${config.client}/components/main/main.js`,
+			`${config.client}/components/main/main.css`
+		]
 	}),
 
 	output: {
@@ -28,7 +30,7 @@ export default {
 	},
 
 	resolve:{
-		root :[ path.resolve(config.js) ],
+		root :[ path.resolve(config.client) ],
 		alias :{
 			jails :'jails-js/source/jails.js',
 			mods  :'jails-modules',
@@ -66,7 +68,7 @@ export default {
 function entries( acc, file ){
 
 	let filename  = file.replace(path.extname(file), '')
-	filename = filename.replace(config.js+'/pages/', '')
+	filename = filename.replace( `${config.client}/pages/`, '')
 	filename = path.basename(filename)
 
 	acc[filename]? acc[filename].push(file) : acc[filename] = [file]
