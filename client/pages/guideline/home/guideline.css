@@ -8,6 +8,7 @@
 	font-family: 'Open Sans';
 	box-shadow: 1px 4px 6px -2px rgba(0,0,0,0.4);
 	background-size: cover;
+	background-image: url(//images5.alphacoders.com/311/311276.jpg);
 }
 
 .gl-header h2.gl {
@@ -22,6 +23,7 @@
 	width: 100%;
 	height: 100%;
 	background-color: #E8345A;
+	opacity:.9
 }
 
 .gl-header .gl-holder {
