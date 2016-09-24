@@ -8,8 +8,7 @@ let dev	 	 = process.env.NODE_ENV != 'production'
 
 let config = {
 	client	   :'./client',
-	dist	   :__dirname + '/dist/',
-	publicPath :'./dist/js/'
+	dist	   :__dirname + '/assets/'
 }
 
 export default {
@@ -25,8 +24,7 @@ export default {
 
 	output: {
 		path: config.dist,
-		filename: '[name]/[name].min.js',
-		publicPath: config.publicPath
+		filename: 'dist/[name]/[name].min.js'
 	},
 
 	resolve:{
@@ -39,13 +37,13 @@ export default {
 	},
 
 	plugins :[
-		new optimize.CommonsChunkPlugin('main', 'main/main.min.js')
+		new optimize.CommonsChunkPlugin('main', 'dist/main/main.min.js')
 	].concat(
 		dev? [] :new optimize.UglifyJsPlugin({
 			compress :{ warnings:false },
 			minimize :true
 		}),
-		new ExtractTextPlugin('[name]/[name].css', {allChunks: false})
+		new ExtractTextPlugin('dist/[name]/[name].css', {allChunks: false})
 	),
 
 	module: {

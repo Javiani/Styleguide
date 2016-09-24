@@ -22,7 +22,7 @@ class Application extends JerryMice{
 
 	middlewares( app, express ){
 
-		app.use( express.static('dist') )
+		app.use( express.static('assets/dist') )
 		app.use( this.middleware.variables( app, this.env ) )
 		app.use( this.middleware.mock( app ) )
 		app.use( this.middleware.markdown( app, this.env ) )
