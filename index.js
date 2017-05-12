@@ -10,9 +10,9 @@ class Application extends JerryMice{
 	engine( app ){
 
 		app.set('view engine', 'njk')
-		app.set('views', './client')
+		app.set('views', './front')
 
-		this.env = nunjucks.configure(['client'], {
+		this.env = nunjucks.configure(['front'], {
 			express   : app,
 			autoescape: false,
 			watch	  : true
@@ -21,7 +21,7 @@ class Application extends JerryMice{
 
 	middlewares( app, express ){
 
-		app.use( express.static('assets/dist') )
+		app.use( express.static('dist') )
 		app.use( this.middleware.variables( app, this.env ) )
 		app.use( this.middleware.mock( app ) )
 		app.use( this.middleware.markdown( app, this.env ) )
@@ -32,10 +32,10 @@ class Application extends JerryMice{
 	}
 
 	routes( app ){
-		app.get('/*.md', (req, res) => res.render('layouts/docs') )
+		app.get('/*.md', (req, res) => res.render('guideline/pages/docs') )
 		app.get('/docs/', (req, res) => res.redirect('/docs/index.md'))
-		app.get( '/', ( req, res) => res.redirect('/pages/guideline/home'))
-		app.get( '*', this.middleware.routes({ 404 :'pages/404' }))
+		app.get( '/', ( req, res) => res.redirect('/guideline/pages/home'))
+		app.get( '*', this.middleware.routes({ 404 :'guideline/pages/404' }))
 	}
 }
 

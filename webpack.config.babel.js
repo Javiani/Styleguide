@@ -1,75 +1,61 @@
 import path from 'path'
 import glob from 'glob'
-import webpack from 'webpack'
+import {optimize} from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 
-let optimize = webpack.optimize
-let dev	 	 = process.env.NODE_ENV != 'production'
-
-let config = {
-	client	   :'./client',
-	dist	   :__dirname + '/assets/'
+const config = {
+	src	: './front',
+	dist: `${__dirname}/dist/`,
+	publicPath :'./dist/'
 }
+
+const guideline = glob.sync( `${config.src}/guideline/pages/**/index{.js,.styl}` ).reduce( entries('guideline'), {})
+const site = glob.sync( `${config.src}/site/pages/**/index{.js,.styl}` ).reduce( entries('site'), {})
+const entry = Object.assign({  main :[`${config.src}/main`] }, guideline, site)
 
 export default {
 
-	devtool :'source-map',
+	devtool: 'source-map',
 
-	entry : glob.sync( `${config.client}/pages/**/*{.js,.css}`).reduce( entries, {
-		main:[
-			`${config.client}/components/main/main.js`,
-			`${config.client}/components/main/main.css`
-		]
-	}),
+	entry,
 
 	output: {
 		path: config.dist,
-		filename: 'dist/[name]/[name].min.js'
+		filename: '[name]/index.js',
+		publicPath: config.publicPath
 	},
 
 	resolve:{
-		root :[ path.resolve(config.client) ],
-		alias :{
-			jails :'jails-js/source/jails.js',
-			mods  :'jails-modules',
-			comps :'jails-components'
-		}
+		root  :[ path.resolve(config.src), path.resolve(config.dist) ]
 	},
 
 	plugins :[
-		new optimize.CommonsChunkPlugin('main', 'dist/main/main.min.js')
+		new optimize.CommonsChunkPlugin('main', 'main.js')
 	].concat(
-		dev? [] :new optimize.UglifyJsPlugin({
-			compress :{ warnings:false },
-			minimize :true
-		}),
-		new ExtractTextPlugin('dist/[name]/[name].css', {allChunks: false})
+		new optimize.UglifyJsPlugin({ compress :{ warnings:false }, minimize :true }),
+		new ExtractTextPlugin('[name]/index.css', {allChunks: false})
 	),
 
 	module: {
-		loaders: [
-			{
-				loader	: 'babel',
-				test	: /\.js$/,
-				exclude	: /node_modules/,
-				query	:{ presets:['es2015'] }
-			},
-			{
-				test:   /\.css$/,
-				loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
+		loaders: [{
+			loader: 'babel',
+			test: /\.js$/,
+			exclude: /node_modules/,
+			query:{
+				presets:['es2015']
 			}
-		]
+		},
+		{
+			test:   /\.styl$/,
+			loader: ExtractTextPlugin.extract('css-loader!stylus-loader?paths[]=node_modules&paths[]=front')
+		}]
 	}
 }
 
-
-function entries( acc, file ){
-
-	let filename  = file.replace(path.extname(file), '')
-	filename = filename.replace( `${config.client}/pages/`, '')
-	filename = path.basename(filename)
-
-	acc[filename]? acc[filename].push(file) : acc[filename] = [file]
-
-	return acc
+function entries(area){
+	return function( acc, file ){
+		let dir 	 = path.dirname(file).split(/\//).pop()
+		acc[ `${area}/${dir}`] = (acc[dir] || []).concat(file)
+		return acc
+	}
 }

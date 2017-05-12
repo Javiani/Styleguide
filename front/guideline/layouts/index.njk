@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="gl-html">
+<head>
+	{% import 'site/components/head/metatags.njk' as metatags %}
+	{% import 'guideline/components/menu/index.njk' as menu %}
+
+	<title>
+		{% block title %} Guideline Page {% endblock %}
+	</title>
+
+	{{ metatags.default() }}
+
+	{% block styles %}
+		<link rel="stylesheet" href="/guideline/home/index.css" />
+	{% endblock %}
+
+	{% block scripts %}
+		<script type="text/javascript" id="main-script" src="/main.js" data-application="/guideline/home/index.js" async></script>
+	{% endblock %}
+
+</head>
+
+	<body class="gl-body" data-component="guideline {{app}}">
+
+		{% block aside %}
+			<aside class="gl-sidebar">
+				{{ menu.sidebar() }}
+			</aside>
+		{% endblock %}
+
+		<section class="gl-container {{ "gl-full" if full }}">
+
+			<header class="gl-header">
+				<div class="gl-holder">
+					<h2 class="gl">Styleguide /</h2>
+					<h1 class="gl">{% block header %}Guideline{% endblock %}</h1>
+				</div>
+			</header>
+
+			<div class="gl-holder gl-content">
+				{% block content %}{% endblock %}
+			</div>
+
+		</section>
+
+	</body>
+
+</html>
