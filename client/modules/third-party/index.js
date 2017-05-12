@@ -1,4 +1,4 @@
-import jails from 'jails'
+import jails from 'jails-js'
 import scriptjs from 'scriptjs'
 
 export default {

@@ -30,9 +30,8 @@
     "webpack": "^1.13.1"
   },
   "devDependencies": {
-    "jails-components": "git://github.com/jails-org/Components.git#v2",
-    "jails-js": "2.0.0-beta",
-    "jails-modules": "git://github.com/jails-org/Modules.git#v2",
+    "jails-js": "jails-org/jails#jails3",
+    "jails.packages": "jails-org/packages",
     "scriptjs": "^2.5.8"
   }
 }

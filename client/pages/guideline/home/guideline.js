@@ -1,8 +1,9 @@
-import jails from 'jails'
+import jails from 'jails-js'
 
-jails('guideline', function( component, html, data ){
+jails('guideline', ( {init} )=>{
 
-	component.init = ()=>{
+	init(()=>{
 		console.log('You\'re at Guideline!')
-	}
+	})
+
 })

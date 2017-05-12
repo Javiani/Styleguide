@@ -8,23 +8,18 @@
 <section class="gl-markdown">
 	{% for name, data in mock.data %}
 		<h2 id="{{name}}" class="gl">{{name}}</h2>
-
 		<table class="gl">
 			<tbody>
 				{% for key, value in data %}
 					{% set type = getType(value) %}
 					<tr>
-						<td>
-							<strong class="gl">{{ key }}</strong>
-						</td>
+						<td><strong class="gl">{{ key }}</strong></td>
 						<td>
 							<label class="gl" for="">{{ type }}</label>
-							{% if type != 'Object' %}
+							{% if type != '_class' %}
 								<td>{{ value }}</td>
 							{% else %}
-								<td>
-									<a class="gl" href="#{{key}}">{{key}}</a>
-								</td>
+								<td><a class="gl" href="#{{key}}">{{key}}</a></td>
 							{% endif %}
 						</td>
 					</tr>

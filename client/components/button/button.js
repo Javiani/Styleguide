@@ -1,10 +1,10 @@
-import jails from 'jails'
+import jails from 'jails-js'
 
-jails('button', ( component, html, data ) =>{
+jails('button', ( {init, on} ) =>{
 
-	component.init = ()=>{
-		component.on('click', log)
-	}
+	init(()=>{
+		on('click', log)
+	})
 
 	let log = ()=>{
 		alert('Button was clicked!')

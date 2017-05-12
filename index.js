@@ -1,7 +1,6 @@
 import JerryMice from './jerrymice'
 import nunjucks from 'nunjucks'
 
-export default
 class Application extends JerryMice{
 
 	constructor(){
@@ -26,14 +25,16 @@ class Application extends JerryMice{
 		app.use( this.middleware.variables( app, this.env ) )
 		app.use( this.middleware.mock( app ) )
 		app.use( this.middleware.markdown( app, this.env ) )
+
+		app.use( '/service/:controller/:action', this.middleware.controller( app ) )
+		app.use( '/service/:controller', this.middleware.controller( app ) )
+
 	}
 
 	routes( app ){
-
-		app.get('/mock/*', this.middleware.services())
 		app.get('/*.md', (req, res) => res.render('layouts/docs') )
 		app.get('/docs/', (req, res) => res.redirect('/docs/index.md'))
-        app.get( '/', ( req, res) => res.redirect('/pages/guideline/home'))
+		app.get( '/', ( req, res) => res.redirect('/pages/guideline/home'))
 		app.get( '*', this.middleware.routes({ 404 :'pages/404' }))
 	}
 }

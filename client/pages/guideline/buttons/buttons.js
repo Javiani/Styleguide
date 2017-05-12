@@ -1,9 +1,9 @@
-import jails from 'jails'
+import jails from 'jails-js'
 import 'components/button/button'
 
-jails('buttons', ( component, element, anno ) =>{
+jails('buttons', ( {init} )=>{
 
-	component.init = ()=>{
+	init(()=>{
 
-	}
+	})
 })
