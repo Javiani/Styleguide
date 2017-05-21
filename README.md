@@ -1,11 +1,7 @@
 # Living Styleguide
 
-To be documented...
+![Screeshot](http://i.imgur.com/WWEfOyN.png)
 
 ```
-npm install
-```
-
-```
-npm run server
+npm install && npm run server
 ```
