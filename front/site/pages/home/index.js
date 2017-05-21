@@ -7,7 +7,7 @@ jails('home', ( {init, subscribe} )=>{
 		subscribe('third-party:facebook', log)
 	})
 
-	const log = ( script, tag )=>{
+	const log = ( script, tag )=>
 		console.info(`[third-party/${script.name}] is loaded`)
-	}
+
 })

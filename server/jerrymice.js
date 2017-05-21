@@ -1,13 +1,18 @@
 import express from 'express'
 import glob from 'glob'
 import path from 'path'
+import config from '../package.json'
 
 let app 	 = express()
-let settings = { port :3000, express, app, middlewares: 'middlewares' }
 let ignore 	 = /start|output|constructor/
 
-export default
-class JerryMice{
+let settings = Object.assign({
+	express, app,
+	port :3000,
+	middlewares: `${__dirname}/middlewares`
+}, config.jerrymice)
+
+export default class JerryMice{
 
 	constructor( config ){
 		this.settings = Object.assign( {}, settings, config )
@@ -43,17 +48,12 @@ let run = ( instance )=>{
 	})
 }
 
-let middlewares = ()=>{
-
-	return glob.sync(`./${settings.middlewares}/**/*.js`)
+let middlewares = ()=> glob.sync(`${settings.middlewares}/**/*.js`)
 		.reduce( ( acc, file ) => {
-
 			let middleware = require( file ).default
 			acc[ path.basename( file, '.js') ] = middleware
 			return acc
-
 		}, {})
-}
 
 let output = ( config )=>{
 	console.log('\x1b[32m%s\x1b[0m------------------------------------------\x1b[32m%s\x1b[0m', '+', '+');

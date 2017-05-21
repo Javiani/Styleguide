@@ -1,17 +1,15 @@
 {% extends 'guideline/layouts/index.njk' %}
 
-{% block header %}
-	Services
-{% endblock %}
+{% block header %}Models{% endblock %}
 
 {% block content %}
 <section class="gl-markdown">
-	{% for name, data in mock.data %}
+	{% for name, data in mock.model %}
 		<h2 id="{{name}}" class="gl">{{name}}</h2>
 		<table class="gl">
 			<tbody>
-				{% for key, value in data %}
-					{% set type = getType(value) %}
+				{% for key, value in data() %}
+					{% set type = getType( value ) %}
 					<tr>
 						<td><strong class="gl">{{ key }}</strong></td>
 						<td>

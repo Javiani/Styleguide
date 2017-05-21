@@ -10,8 +10,8 @@ const config = {
 }
 
 const guideline = glob.sync( `${config.src}/guideline/pages/**/index{.js,.styl}` ).reduce( entries('guideline'), {})
-const site = glob.sync( `${config.src}/site/pages/**/index{.js,.styl}` ).reduce( entries('site'), {})
-const entry = Object.assign({  main :[`${config.src}/main`] }, guideline, site)
+const site 	 	= glob.sync( `${config.src}/site/pages/**/index{.js,.styl}` ).reduce( entries('site'), {})
+const entry 	= Object.assign({  core :[`${config.src}/core`] }, guideline, site)
 
 export default {
 
@@ -30,7 +30,7 @@ export default {
 	},
 
 	plugins :[
-		new optimize.CommonsChunkPlugin('main', 'main.js')
+		new optimize.CommonsChunkPlugin('core', 'core.js')
 	].concat(
 		new optimize.UglifyJsPlugin({ compress :{ warnings:false }, minimize :true }),
 		new ExtractTextPlugin('[name]/index.css', {allChunks: false})
@@ -53,9 +53,9 @@ export default {
 }
 
 function entries(area){
-	return function( acc, file ){
-		let dir 	 = path.dirname(file).split(/\//).pop()
-		acc[ `${area}/${dir}`] = (acc[dir] || []).concat(file)
+	return ( acc, file )=>{
+		let dir = path.dirname(file).split(/\//).pop()
+		acc[ `${area}/${dir}`] = (acc[`${area}/${dir}`] || []).concat(file)
 		return acc
 	}
 }

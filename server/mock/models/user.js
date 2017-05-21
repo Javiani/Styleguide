@@ -1,12 +1,8 @@
-import Price from './price'
+import Fullname from './fullname'
 
 export default class {
 
-	constructor(){
-
-		this.name = 'Clark Kent'
-		this.age  = 33
-		this.occupation = 'Heroe'
-		this.price = new Price()
+	constructor( data = { name:'Default name' } ){
+		this.fullname = new Fullname( data.name )
 	}
 }

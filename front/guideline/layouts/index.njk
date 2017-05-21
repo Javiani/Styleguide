@@ -15,12 +15,12 @@
 	{% endblock %}
 
 	{% block scripts %}
-		<script type="text/javascript" id="main-script" src="/main.js" data-application="/guideline/home/index.js" async></script>
+		<script type="text/javascript" id="main-script" src="/core.js" data-application="/guideline/home/index.js" async></script>
 	{% endblock %}
 
 </head>
 
-	<body class="gl-body" data-component="guideline {{app}}">
+	<body class="gl-body" data-component="guideline">
 
 		{% block aside %}
 			<aside class="gl-sidebar">
@@ -32,8 +32,7 @@
 
 			<header class="gl-header">
 				<div class="gl-holder">
-					<h2 class="gl">Styleguide /</h2>
-					<h1 class="gl">{% block header %}Guideline{% endblock %}</h1>
+					<h2 class="gl">Styleguide - <small>{% block header %}Guideline{% endblock %}</small></h2>
 				</div>
 			</header>
 

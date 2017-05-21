@@ -5,10 +5,10 @@ export default ( app ) => {
 
 	return ( req, res, next ) =>{
 
-		let data 	 = glob.sync('./server/mock/models/**/*.js').reduce( reduce(req, res), {} )
-		let services = glob.sync('./server/mock/services/**/*.js').reduce( reduce(req, res), { app } )
+		let model 	= glob.sync('./server/mock/models/**/*.js').reduce( reduce(req, res), {} )
+		let service = glob.sync('./server/mock/services/**/*.js').reduce( reduce(req, res), { app } )
 
-		app.locals.mock = { data, services }
+		app.locals.mock = { model, service }
 		next()
 	}
 }
@@ -20,7 +20,7 @@ let reduce = (req, res) => ( acc, file ) =>{
 	let _class = require( module ).default
 
 	name = name.replace(/\-/g, '_')
-	acc[ name ] = new _class( req, res )
+	acc[ name ] = function(a, b, c, d){ return new _class(a, b, c, d) }
 
 	return acc
 }
